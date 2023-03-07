@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import Post from './Post';
 
 function App() {
+  const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPost([
+        { title: 'useEffect', body: 'sdsa asdas dAD  DASD AS ' },
+        { title: 'useCallback', body: 'sdsa asdas dAD  DASD AS ' },
+        { title: 'useMemo', body: 'sdsa asdas dAD  DASD AS ' },
+      ]);
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Post data={post} loading={loading} />
     </div>
   );
 }
